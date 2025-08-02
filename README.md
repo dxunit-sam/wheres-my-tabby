@@ -11,15 +11,14 @@ The project classifies photos of a specific tabby cat, Mackenzie, against other 
 ## DATA
 Dataset combines ~164-300 personal high-quality photos of Mackenzie (varied angles, lighting, postures) with ~300 tabby images from Kaggle's datasets. Images are HEIC/JPG, converted to RGB, resized to 224x224 while preserving proportions via center cropping. Split 80/20 for train/test, balanced to 300 per class.
 
-- Other tabby images from Kaggle Cat Breeds Dataset [](https://www.kaggle.com/datasets/shaunthesheep/microsoft-catsvsdogs-dataset), filtered for tabby breeds.
+- Other tabby images from Kaggle Cat Breeds Dataset [](https://www.kaggle.com/datasets/ma7555/cat-breeds-dataset), filtered for tabby breeds.
 - To balance image quantity, randomly removed images down to 500 files using a Terminal command, then further sampled to 300 for training.
 - Mackenzie folder images mostly taken with my cat using an iPhone 16 Pro; aim to take more photos in different lighting and situations in the next few days to balance the data.
 
 Sources:  
-- Personal photos of my cat, downloaded or taken with an Apple iPhone 16 Pro  
-- [Oxford-IIIT Pet Dataset](https://www.kaggle.com/datasets/zippyz/cats-and-dogs-breeds-classification-oxford-dataset)  
-- [Cats Dataset](https://www.kaggle.com/datasets/crawford/cat-dataset)  
-- [Cat Breeds Dataset](https://www.kaggle.com/datasets/shaunthesheep/microsoft-catsvsdogs-dataset)
+- Personal photos of my cat, downloaded or taken with an Apple iPhone 16 Pro 
+- [Cat Breeds Dataset](https://www.kaggle.com/datasets/ma7555/cat-breeds-dataset)
+Due to the large number of images, I uploaded Mackenzie's photos in a zip file in /images
 
 ## MODEL
 ResNet18 architecture in PyTorch, fine-tuned for binary classification (Mackenzie vs. Other Tabbies). Pre-trained on ImageNet, with final layer adjusted to 2 classes. Trained with Adam optimizer, CrossEntropyLoss, and data augmentation (random rotations, crops) for robustness. Uses MPS acceleration on Apple Silicon.
@@ -33,7 +32,9 @@ Key hyperparameters:
 Optimized empirically; class balance ensured via equal sampling.
 
 ## RESULTS
-Achieved 96% test accuracy on the balanced dataset (~120 test images) after training for 10 epochs. Confusion matrix (see `cm_10epoch.png`) shows strong true positives and true negatives, with minimal false positives and false negatives. Visual examples highlight successes (clear Mackenzie patterns) and errors (similar markings, poor angles). Loss dropped from ~0.46 to ~0.10 over 10 epochs, indicating improved learning, though potential overfitting risk remains on small data.
+Achieved 96% test accuracy on the balanced dataset (~120 test images) after training for 10 epochs. Confusion matrix shows strong true positives and true negatives, with minimal false positives and false negatives. Visual examples highlight successes (clear Mackenzie patterns) and errors (similar markings, poor angles). Loss dropped from ~0.46 to ~0.10 over 10 epochs, indicating improved learning, though potential overfitting risk remains on small data.
+
+![Confusion Matrix](https://raw.githubusercontent.com/dxunit-sam/wheres-my-tabby/main/cm_10epoch.png)
 
 ## CONCLUSIONS
 The model delivers strong accuracy (96%) for identifying Mackenzie, validating AI for individual pet recognition. Proportions-preserving preprocessing reduced distortions, boosting performance. While effective as a proof-of-concept, larger datasets and real-world testing are needed to mitigate overfitting and enhance generalization for lost pet applications.
