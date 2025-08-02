@@ -15,7 +15,7 @@
 - How many instances of each type are there?  
   - Mackenzie: ~100+ photos (so far)
   - Other tabby cats: ~500 photos (sampled from larger set).  
-  Total: ~800 photos.
+  Total: ~600+ photos.
 
 - Is there any missing data?  
   No missing data; all images are complete and labeled.
