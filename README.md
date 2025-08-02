@@ -1,6 +1,6 @@
 # Where's My Tabby? - Identifying Mackenzie from Other Tabby Cats Using AI
 
-This project serves as the capstone for the Professional Certificate in Machine Learning and Artificial Intelligence at Imperial College, focusing on a personal interest in pet identification.
+This is a portolio project for the Professional Certificate in Machine Learning and Artificial Intelligence at Imperial College, focusing on a personal interest in pet identification.
 
 ## GOALS
 This project demonstrates AI's potential to identify individual pets from photos, aiding in reuniting lost cats with owners. High accuracy on tabby cats could extend to an app where users snap street photos to match against a database, notifying owners without costly tracking devices. Scalable to other breeds and pets for broader lost pet recovery applications.
