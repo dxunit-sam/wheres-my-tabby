@@ -1,8 +1,8 @@
 # Where's My Tabby? - Identifying Mackenzie from Other Tabby Cats Using AI
 
-This project serves as the capstone for the Professional Certificate in Machine Learning and Artificial Intelligence at Imperial College, focusing on a personal interest in pet identification. Documented as of 05:42 PM BST on Saturday, August 02, 2025.
+This project serves as the capstone for the Professional Certificate in Machine Learning and Artificial Intelligence at Imperial College, focusing on a personal interest in pet identification.
 
-## BUSINESS GOALS
+## GOALS
 This project demonstrates AI's potential to identify individual pets from photos, aiding in reuniting lost cats with owners. High accuracy on tabby cats could extend to an app where users snap street photos to match against a database, notifying owners without costly tracking devices. Scalable to other breeds and pets for broader lost pet recovery applications.
 
 ## CONTEXT
@@ -39,8 +39,10 @@ Achieved 96% test accuracy on the balanced dataset (~120 test images) after trai
 ## CONCLUSIONS
 The model delivers strong accuracy (96%) for identifying Mackenzie, validating AI for individual pet recognition. Proportions-preserving preprocessing reduced distortions, boosting performance. While effective as a proof-of-concept, larger datasets and real-world testing are needed to mitigate overfitting and enhance generalization for lost pet applications.
 
-## ACTIONABLE INSIGHTS
-- **Data Expansion**: Collect 500+ Mackenzie photos and diverse tabbies; extend to other breeds/pets.  
-- **Model Enhancement**: Test deeper architectures (e.g., EfficientNet) or ensemble methods for better robustness.  
-- **Deployment**: Build a mobile app for photo uploads/matching; integrate with lost pet platforms like Petco Love Lost.  
+## NEXT STEPS
+- **Data Expansion**: Take more Mackenzie photos, balancing the datasets.
+- **Model Enhancement**: Optimise current model with hyperparameter tuning, try Optuna, other models such as LeNet5, EfficientNet, etc, for better robustness.
+
+## FUTURE CONSIDERATIONS
+- **Deployment**: Build a webapp for photo uploads/matching
 - **Portfolio Use**: Highlight as Imperial College capstone, emphasizing practical AI for personal/societal impact.
