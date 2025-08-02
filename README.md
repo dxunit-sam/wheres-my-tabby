@@ -39,10 +39,62 @@ Achieved 96% test accuracy on the balanced dataset (~120 test images) after trai
 ## CONCLUSIONS
 The model delivers strong accuracy (96%) for identifying Mackenzie, validating AI for individual pet recognition. Proportions-preserving preprocessing reduced distortions, boosting performance. While effective as a proof-of-concept, larger datasets and real-world testing are needed to mitigate overfitting and enhance generalization for lost pet applications.
 
-## NEXT STEPS
-- **Data Expansion**: Take more Mackenzie photos, balancing the datasets.
-- **Model Enhancement**: Optimise current model with hyperparameter tuning, try Optuna, other models such as LeNet5, EfficientNet, etc, for better robustness.
+## NEXT STEPS FOR THIS PROOF OF CONCEPT
+- **Data Expansion**: Capture 200+ new Mackenzie photos in varied conditions; resample to balance at 500 per class.
+- **Model Enhancement**: Use Optuna for hyperparameter tuning (e.g., LR, batch size); test LeNet-5 (shallow, fast but lower accuracy expected) vs. EfficientNet (deeper, better for patterns, start with B0 variant).
 
-## FUTURE CONSIDERATIONS
-- **Deployment**: Build a webapp for photo uploads/matching
-- **Portfolio Use**: Highlight as Imperial College capstone, emphasizing practical AI for personal/societal impact.
+## FUTURE CONSIDERATIONS BEFORE PRACTICAL USE
+- **Generalisation**: Train on diverse breeds (e.g., solid black/white cats via Oxford-IIIT dataset); use nose prints or facial geometry for low-pattern cases.
+- **Deployment**: Build a webapp for photo uploads/matching, host on AWS. Helping all the beloved cats in the UK to have a chance to get back to their loving owners. Explore potential to fuel by love and donations.
+
+
+## HOW TO USE
+
+### Basic Environment Setup
+- **Python Environment**:
+  - **Windows, Mac, Linux**: Install Python 3.8+ from [python.org](https://www.python.org/downloads/).
+  - Open a terminal or command prompt and create a virtual environment (optional but recommended):
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Mac/Linux
+    venv\Scripts\activate     # On Windows
+
+- **Install Necessary Libraries**:
+ - Run the following in the terminal: pip install numpy matplotlib scikit-learn pillow pillow_heif torch torchvision seaborn
+
+- **Git Clone or Download the Repo**:
+ - Clone the repository:
+ - git clone https://github.com/dxunit-sam/wheres-my-tabby.git
+ - cd wheres-my-tabby
+ - Or download the ZIP file from GitHub and extract it.
+
+
+- **Prepare Data**
+ - Create Folder Structure:
+ - Create a folder named images in the project directory.
+ - Inside images, create a subfolder named after your cat (e.g., images/(your cat's name)).
+ - Create another subfolder images/othertabby.
+
+- **Upload Photos**:
+ - Upload approximately 500 photos of your cat to images/(your cat's name), ideally with varied lighting, angles, and postures.
+ - Download 500 photos from other sources (e.g., https://www.kaggle.com/datasets/ma7555/cat-breeds-dataset) and place them in images/othertabby.
+
+- **Train and Test Model**
+ - Open Jupyter Notebook:
+ - Install Jupyter Lab if needed: pip install jupyterlab.
+ - Launch Jupyter Lab: jupyter lab.
+ - Open the notebook wheresmytabby.ipynb in the browser.
+
+- **Update Folder Names**:
+ - In the notebook, update the folder variables as needed:
+ - pythonyour_cat_folder = "(your cat's name)"
+ - other_cat_folder = "othertabby"
+
+- **Run the Python Code**:
+ - Execute all cells in the notebook to load data, preprocess images, train the model, and observe results (e.g., 96% accuracy, confusion matrix).
+
+
+## CONTACT ME
+- **For questions, suggestions, or collaboration on extending this project (e.g., adding more breeds), feel free to reach out**:
+ - Email: samson@dxunit.com
+ - GitHub: dxunit-sam
