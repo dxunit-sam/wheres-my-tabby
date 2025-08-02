@@ -24,12 +24,11 @@ Due to the large number of images, I uploaded Mackenzie's photos in a zip file i
 ResNet18 architecture in PyTorch, fine-tuned for binary classification (Mackenzie vs. Other Tabbies). Pre-trained on ImageNet, with final layer adjusted to 2 classes. Trained with Adam optimizer, CrossEntropyLoss, and data augmentation (random rotations, crops) for robustness. Uses MPS acceleration on Apple Silicon.
 
 ## HYPERPARAMETER OPTIMIZATION
-Key hyperparameters:  
+Key hyperparameters: (TO-DO)
 - Learning rate: 0.001 (Adam optimizer for convergence).  
 - Batch size: 32 (balances speed and memory).  
 - Epochs: Initially 5-10 (monitored for loss reduction); result wasn't perfect with 5 epochs, sometimes accuracy lower than 90%. Improved after fine-tuning to 10 epochs, reaching 96%.  
-- Data augmentation: Random rotations (0-360°), center crops, resizes preserving proportions.  
-Optimized empirically; class balance ensured via equal sampling.
+- Increase training image size from 224 to say 448, to capture subtle pattern on pets
 
 ## RESULTS
 Achieved 96% test accuracy on the balanced dataset (~120 test images) after training for 10 epochs. Confusion matrix shows strong true positives and true negatives, with minimal false positives and false negatives. Visual examples highlight successes (clear Mackenzie patterns) and errors (similar markings, poor angles). Loss dropped from ~0.46 to ~0.10 over 10 epochs, indicating improved learning, though potential overfitting risk remains on small data.
