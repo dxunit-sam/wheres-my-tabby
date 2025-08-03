@@ -36,8 +36,14 @@ Achieved 96% test accuracy on the balanced dataset (~120 test images) after trai
 ![Confusion Matrix](https://raw.githubusercontent.com/dxunit-sam/wheres-my-tabby/main/cm_10epoch.png)
 ![Result with Samples](https://raw.githubusercontent.com/dxunit-sam/wheres-my-tabby/main/cm_10epoch_sample.png)
 
+Further optimization with the EfficientNet model enhanced performance, achieving 98.95% test accuracy on the same dataset. Initial testing with 10 epochs showed signs of overfitting, with the loss increasing after reaching a minimum (e.g., ~0.05), suggesting the model memorized the training data. To mitigate this, the training was adjusted to 8 epochs, optimizing the balance between learning and generalization, resulting in a stabilized loss of ~0.04 and improved robustness. The updated confusion matrix and sample visualizations reflect this refined performance, showcasing fewer misclassifications and a stronger alignment with real-world lost pet identification scenarios.
+
+![Confusion Matrix](https://raw.githubusercontent.com/dxunit-sam/wheres-my-tabby/main/cm_effnet_10ep.png)
+![Result with Samples](https://raw.githubusercontent.com/dxunit-sam/wheres-my-tabby/main/cm_effnet_10ep_sample.png)
+
+
 ## CONCLUSIONS
-The model delivers strong accuracy (96%) for identifying Mackenzie, validating AI for individual pet recognition. Proportions-preserving preprocessing reduced distortions, boosting performance. While effective as a proof-of-concept, larger datasets and real-world testing are needed to mitigate overfitting and enhance generalization for lost pet applications.
+The model delivers strong accuracy (98%) for identifying Mackenzie, validating AI for individual pet recognition. Proportions-preserving preprocessing reduced distortions, boosting performance. While effective as a proof-of-concept, larger datasets and real-world testing are needed to mitigate overfitting and enhance generalization for lost pet applications.
 
 ## NEXT STEPS FOR THIS PROOF OF CONCEPT
 - **Data Expansion**: Capture 200+ new Mackenzie photos in varied conditions; resample to balance at 500 per class.
