@@ -9,7 +9,7 @@ This project demonstrates AI's potential to identify individual pets from photos
 The project classifies photos of a specific tabby cat, Mackenzie, against other tabbies using deep learning. We used a binary classifier to address dataset imbalance (fewer Mackenzie photos). Built with PyTorch and ResNet18, it handles real-world variations like angles, lighting, and distances to mimic lost pet scenarios. Challenges include maintaining accuracy on complex tabby patterns and preserving image proportions to avoid distortion.
 
 ## DATA
-Dataset combines ~164-300 personal high-quality photos of Mackenzie (varied angles, lighting, postures) with ~300 tabby images from Kaggle's datasets. Images are HEIC/JPG, converted to RGB, resized to 224x224 while preserving proportions via center cropping. Split 80/20 for train/test, balanced to 300 per class.
+Dataset combines ~100+ personal high-quality photos of Mackenzie (varied angles, lighting, postures) with ~300 tabby images from Kaggle's datasets. Images are HEIC/JPG, converted to RGB, resized to 224x224 while preserving proportions via center cropping. Split 80/20 for train/test, balanced to 300 per class.
 
 - Other tabby images from Kaggle Cat Breeds Dataset [](https://www.kaggle.com/datasets/ma7555/cat-breeds-dataset), filtered for tabby breeds.
 - To balance image quantity, randomly removed images down to 500 files using a Terminal command, then further sampled to 300 for training.
@@ -25,10 +25,11 @@ ResNet18 architecture in PyTorch, fine-tuned for binary classification (Mackenzi
 
 ## HYPERPARAMETER OPTIMIZATION
 Key hyperparameters: (TO-DO)
-- Learning rate: 0.001 (Adam optimizer for convergence).  
+- ✅ Epochs: Initially 5-10 (monitored for loss reduction); result wasn't perfect with 5 epochs using ResNet18, sometimes accuracy lower than 90%. Improved after fine-tuning to 10 epochs, reaching 96%.
+- ✅ Testing other model EfficientNet 8 epochs 0.0005 learning rate after fine tuning with minimising loss, reaching 98%+ accuracy.
 - Batch size: 32 (balances speed and memory).  
-- Epochs: Initially 5-10 (monitored for loss reduction); result wasn't perfect with 5 epochs, sometimes accuracy lower than 90%. Improved after fine-tuning to 10 epochs, reaching 96%.  
-- Increase training image size from 224 to say 448, to capture subtle pattern on pets
+ And could be different per model
+- Increase training image size from 224 to higher resolution, to capture subtle pattern on pets
 
 ## RESULTS
 Achieved 96% test accuracy on the balanced dataset (~120 test images) after training for 10 epochs. Confusion matrix shows strong true positives and true negatives, with minimal false positives and false negatives. Visual examples highlight successes (clear Mackenzie patterns) and errors (similar markings, poor angles). Loss dropped from ~0.46 to ~0.10 over 10 epochs, indicating improved learning, though potential overfitting risk remains on small data.
