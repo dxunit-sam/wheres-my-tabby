@@ -9,7 +9,7 @@ This project demonstrates AI's potential to identify individual pets from photos
 The project classifies photos of a specific tabby cat, Mackenzie, against other tabbies using deep learning. We used a binary classifier to address dataset imbalance (fewer Mackenzie photos). Built with PyTorch and ResNet18, it handles real-world variations like angles, lighting, and distances to mimic lost pet scenarios. Challenges include maintaining accuracy on complex tabby patterns and preserving image proportions to avoid distortion.
 
 ## DATA
-Dataset combines ~100+ personal high-quality photos of Mackenzie (varied angles, lighting, postures) with ~300 tabby images from Kaggle's datasets. Images are HEIC/JPG, converted to RGB, resized to 224x224 while preserving proportions via center cropping. Split 80/20 for train/test, balanced to 300 per class.
+Dataset combines ~200+ personal high-quality photos of Mackenzie (varied angles, lighting, postures) with ~300 tabby images from Kaggle's datasets. Images are HEIC/JPG, converted to RGB, resized to 224x224 or 300x300 while preserving proportions via center cropping. Split 80/20 for train/test, balanced to 300 per class.
 
 - Other tabby images from Kaggle Cat Breeds Dataset [](https://www.kaggle.com/datasets/ma7555/cat-breeds-dataset), filtered for tabby breeds.
 - To balance image quantity, randomly removed images down to 500 files using a Terminal command, then further sampled to 300 for training.
