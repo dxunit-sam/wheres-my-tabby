@@ -67,20 +67,16 @@ The model delivers strong accuracy (96%+) for identifying Mackenzie, validating 
 
 ## FUTURE CONSIDERATIONS BEFORE PRACTICAL USE
 - **Generalisation**: Train on diverse breeds (e.g., solid black/white cats via Oxford-IIIT dataset); use nose prints or facial geometry for low-pattern cases.
+- **Test with other cats and breed of cats**: With other cat owners permission, setup the folders to host images, label, and CNN output for another cat.
 - **Deployment**: Build a webapp for photo uploads/matching, host on AWS. Helping all the beloved cats in the UK to have a chance to get back to their loving owners. Explore potential to fuel by love and donations.
+- **Other kind of pets**: Further in future, evaluate possibility to apply the model to other pets like dogs
 
 
 ## HOW TO USE
 
 ### Basic Environment Setup
 - **Python Environment**:
-  - **Windows, Mac, Linux**: Install Python 3.8+ from [python.org](https://www.python.org/downloads/).
-  - Open a terminal or command prompt and create a virtual environment (optional but recommended):
-    ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Mac/Linux
-    venv\Scripts\activate     # On Windows
-
+  - **Windows, Mac, Linux**: Install Python (3.13.3 was used in development)
 - **Install Necessary Libraries**:
  - Run the following in the terminal: pip install numpy matplotlib scikit-learn pillow pillow_heif torch torchvision seaborn
 
@@ -90,16 +86,11 @@ The model delivers strong accuracy (96%+) for identifying Mackenzie, validating 
  - cd wheres-my-tabby
  - Or download the ZIP file from GitHub and extract it.
 
-
 - **Prepare Data**
  - Create Folder Structure:
  - Create a folder named images in the project directory.
- - Inside images, create a subfolder named after your cat (e.g., images/(your cat's name)).
+ - Inside images, create a subfolder named after your cat (e.g., images/(your cat's name)). Or use Mackenzie photos (zipped) in images folder
  - Create another subfolder images/othertabby.
-
-- **Upload Photos**:
- - Upload approximately 500 photos of your cat to images/(your cat's name), ideally with varied lighting, angles, and postures.
- - Download 500 photos from other sources (e.g., https://www.kaggle.com/datasets/ma7555/cat-breeds-dataset) and place them in images/othertabby.
 
 - **Train and Test Model**
  - Open Jupyter Notebook:
