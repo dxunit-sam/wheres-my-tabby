@@ -10,21 +10,21 @@ The project classifies photos of a specific tabby cat, Mackenzie, against other 
 
 ## DATA
 Dataset combines ~200+ personal high-quality photos of Mackenzie (varied angles, lighting, postures) with ~300 tabby images from Kaggle's datasets. Images are HEIC/JPG, converted to RGB, resized to 224x224 or 300x300 while preserving proportions via center cropping. Split 80/20 for train/test, balanced to 300 per class.
+Images for training are randomly rotated by 0-360 degrees, center-cropped to a square based on the shorter side (preserving proportions), and resized to 224x224 using Lanczos resampling for high-quality output. This augmentation enhances model robustness to real-world variations like orientation and
 
-- Other tabby images from Kaggle Cat Breeds Dataset [](https://www.kaggle.com/datasets/ma7555/cat-breeds-dataset), filtered for tabby breeds.
-- To balance image quantity, randomly removed images down to 500 files using a Terminal command, then further sampled to 300 for training.
+- Other tabby images from Kaggle Cat Breeds Dataset , filtered for tabby breeds.
+To balance image quantity, randomly removed images down to 500 files using a Terminal command, then further sampled to 300 for training.
 - Mackenzie folder images mostly taken with my cat using an iPhone 16 Pro; aim to take more photos in different lighting and situations in the next few days to balance the data.
 
-Sources:  
-- Personal photos of my cat, downloaded or taken with an Apple iPhone 16 Pro 
-- [Cat Breeds Dataset](https://www.kaggle.com/datasets/ma7555/cat-breeds-dataset)
-Due to the large number of images, I uploaded Mackenzie's photos in a zip file in /images
+Sources:
+- Personal photos of my cat, downloaded or taken with an Apple iPhone 16 Pro. I uploaded Mackenzie's photos in a zip file in /images
+Cat Breeds Dataset - Download from Kaggle [Cat Breeds Dataset](https://www.kaggle.com/datasets/ma7555/cat-breeds-dataset)
 
 
 ## MODELS USED
 ResNet architecture in PyTorch, fine-tuned for binary classification (Mackenzie vs. Other Tabbies). Pre-trained on ImageNet, with final layer adjusted to 2 classes. Trained with Adam optimizer, CrossEntropyLoss, and data augmentation (random rotations, crops) for robustness. Uses MPS acceleration on Apple Silicon.
 
-EfficientNet
+EfficientNet family of models in PyTorch, optimized for efficiency and accuracy through compound scaling of depth, width, and resolution. Variants B0 and B7 used, pre-trained on ImageNet, EfficientNet-B0 provided a lightweight baseline, while B7's larger architecture maximized feature extraction for tabby patterns, achieving 96.49% accuracy after Optuna hyperparameter tuning. Both variants were fine-tuned for binary classification, leveraging MPS for fast training on the ~500-image dataset.
 
 
 ## HYPERPARAMETER OPTIMIZATION
@@ -62,7 +62,10 @@ The final trial optimized the EfficientNet-B7 model through hyperparameter tunin
 
 
 ## CONCLUSIONS
-The model delivers strong accuracy (96%+) for identifying Mackenzie, validating AI for individual pet recognition. Proportions-preserving preprocessing reduced distortions, boosting performance. While effective as a proof-of-concept, larger datasets and real-world testing are needed to mitigate overfitting and enhance generalization for lost pet applications.
+The model delivers strong accuracy (96%+) for identifying Mackenzie, validating AI for individual pet recognition. Proportions-preserving preprocessing reduced distortions, boosting performance.
+With the high percentage after optimisation, it is possible to use AI to identify individual tabby cat from other cats by it's features.
+
+While effective as a proof-of-concept, larger datasets and real-world testing are needed to mitigate overfitting and enhance generalization for lost pet applications. Such as training with other breeds and potentially other pets.
 
 
 ## FUTURE CONSIDERATIONS BEFORE PRACTICAL USE
