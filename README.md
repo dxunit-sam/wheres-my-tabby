@@ -20,35 +20,50 @@ Sources:
 - [Cat Breeds Dataset](https://www.kaggle.com/datasets/ma7555/cat-breeds-dataset)
 Due to the large number of images, I uploaded Mackenzie's photos in a zip file in /images
 
-## MODEL
-ResNet18 architecture in PyTorch, fine-tuned for binary classification (Mackenzie vs. Other Tabbies). Pre-trained on ImageNet, with final layer adjusted to 2 classes. Trained with Adam optimizer, CrossEntropyLoss, and data augmentation (random rotations, crops) for robustness. Uses MPS acceleration on Apple Silicon.
+
+## MODELS USED
+ResNet architecture in PyTorch, fine-tuned for binary classification (Mackenzie vs. Other Tabbies). Pre-trained on ImageNet, with final layer adjusted to 2 classes. Trained with Adam optimizer, CrossEntropyLoss, and data augmentation (random rotations, crops) for robustness. Uses MPS acceleration on Apple Silicon.
+
+EfficientNet
+
 
 ## HYPERPARAMETER OPTIMIZATION
 Key hyperparameters: (TO-DO)
 - ✅ Epochs: Initially 5-10 (monitored for loss reduction); result wasn't perfect with 5 epochs using ResNet18, sometimes accuracy lower than 90%. Improved after fine-tuning to 10 epochs, reaching 96%.
-- ✅ Testing other model EfficientNet 8 epochs 0.0005 learning rate after fine tuning with minimising loss, reaching 98%+ accuracy.
-- Batch size: 32 (balances speed and memory).  
- And could be different per model
-- Increase training image size from 224 to higher resolution, to capture subtle pattern on pets
+- ✅ Testing other model EfficientNet B1 and B7, 8 epochs 0.0005 learning rate after fine tuning with minimising loss, reaching 98%+ accuracy.
+- ✅ Improved image size from 224x224 to 300x300, while 600x600 is too large and too slow to train
+- ✅ Batch size: 32 (balances speed and memory).
+- ✅ Use Optuna to fine tune hyperparameters, including learning rate and weight decay
+
 
 ## RESULTS
-Achieved 96% test accuracy on the balanced dataset (~120 test images) after training for 10 epochs. Confusion matrix shows strong true positives and true negatives, with minimal false positives and false negatives. Visual examples highlight successes (clear Mackenzie patterns) and errors (similar markings, poor angles). Loss dropped from ~0.46 to ~0.10 over 10 epochs, indicating improved learning, though potential overfitting risk remains on small data.
 
-![Confusion Matrix](https://raw.githubusercontent.com/dxunit-sam/wheres-my-tabby/main/cm_10epoch.png)
-![Result with Samples](https://raw.githubusercontent.com/dxunit-sam/wheres-my-tabby/main/cm_10epoch_sample.png)
+### First Trial with a Modern Model - ResNet
+The initial trial utilized the ResNet18 model, a modern convolutional neural network, trained for 10 epochs to replace the older LeNet5 architecture. This experiment marked the project's entry into using contemporary models, achieving a test accuracy of 70.30% on the balanced dataset (~120 test images). The confusion matrix highlights early successes and challenges, with moderate true positives and true negatives, and noticeable false positives and negatives, reflecting the learning curve on the small dataset.
 
-Further optimization with the EfficientNet model enhanced performance, achieving 98.95% test accuracy on the same dataset. Initial testing with 10 epochs showed signs of overfitting, with the loss increasing after reaching a minimum (e.g., ~0.05), suggesting the model memorized the training data. To mitigate this, the training was adjusted to 8 epochs, optimizing the balance between learning and generalization, resulting in a stabilized loss of ~0.04 and improved robustness. The updated confusion matrix and sample visualizations reflect this refined performance, showcasing fewer misclassifications and a stronger alignment with real-world lost pet identification scenarios.
+![Confusion Matrix](https://raw.githubusercontent.com/dxunit-sam/wheres-my-tabby/main/cm_resnet18.png)
 
-![Confusion Matrix](https://raw.githubusercontent.com/dxunit-sam/wheres-my-tabby/main/cm_effnet_10ep.png)
-![Result with Samples](https://raw.githubusercontent.com/dxunit-sam/wheres-my-tabby/main/cm_effnet_10ep_sample.png)
+### Trial with Another Model - EfficientNet B0
+The second trial explored the EfficientNet-B0 model, trained for 7 epochs, to assess its potential as a promising alternative. This effort yielded a test accuracy of 92.08%, a significant improvement over ResNet18, demonstrating the model's efficiency in handling the dataset's tabby patterns. The confusion matrix reflects stronger true positives and true negatives, with reduced misclassifications, indicating better feature extraction and robustness.
+
+![Confusion Matrix](https://raw.githubusercontent.com/dxunit-sam/wheres-my-tabby/main/cm_efficientnetb0.png)
+
+### Trial with an Enhanced Variant - EfficientNet B7
+The third trial advanced to the EfficientNet-B7 model, trained for 8 epochs with an image size of 300 and a learning rate of 0.0005. This iteration achieved a test accuracy of 96.04%, showcasing a substantial leap in performance. The confusion matrix reveals a marked increase in true positives and true negatives, with minimal false positives and negatives, highlighting the model's enhanced capability to discern Mackenzie from other tabbies, though potential overfitting risks persist due to the dataset size.
+
+![Confusion Matrix](https://raw.githubusercontent.com/dxunit-sam/wheres-my-tabby/main/cm_efficientnetb7.png)
+
+### Final Trial (EfficientNet-B7 Model with Optuna)
+The final trial optimized the EfficientNet-B7 model through hyperparameter tuning with Optuna, significantly elevating performance. Trained with an optimized learning rate of 0.00017494927607842746 and weight decay of 0.0003795468539615388 over 10 epochs, the model achieved a test accuracy of 96.49%. This refinement reduced the training loss from 0.536 to 0.014, demonstrating robust learning despite minor fluctuations, likely due to the small dataset. The updated confusion matrix and sample visualizations underscore this enhanced capability, showcasing fewer misclassifications and improved alignment with real-world lost pet identification scenarios. The optimized model, saved as `wheresmytabby_efficientnetb7_optuna.pth`, effectively leverages EfficientNet-B7's advanced architecture to capture the nuances of tabby patterns and other distinguishing features, marking a successful conclusion to the model development phase as of 12:05 PM BST on Monday, August 04, 2025.
+
+![Confusion Matrix](https://raw.githubusercontent.com/dxunit-sam/wheres-my-tabby/main/cm_efficientnetb7_optuna.png)
+![Result with Samples](https://raw.githubusercontent.com/dxunit-sam/wheres-my-tabby/main/samples_efficientnetb7_optuna.png)
+
 
 
 ## CONCLUSIONS
-The model delivers strong accuracy (98%) for identifying Mackenzie, validating AI for individual pet recognition. Proportions-preserving preprocessing reduced distortions, boosting performance. While effective as a proof-of-concept, larger datasets and real-world testing are needed to mitigate overfitting and enhance generalization for lost pet applications.
+The model delivers strong accuracy (96%+) for identifying Mackenzie, validating AI for individual pet recognition. Proportions-preserving preprocessing reduced distortions, boosting performance. While effective as a proof-of-concept, larger datasets and real-world testing are needed to mitigate overfitting and enhance generalization for lost pet applications.
 
-## NEXT STEPS FOR THIS PROOF OF CONCEPT
-- **Data Expansion**: Capture 200+ new Mackenzie photos in varied conditions; resample to balance at 500 per class.
-- **Model Enhancement**: Use Optuna for hyperparameter tuning (e.g., LR, batch size); test LeNet-5 (shallow, fast but lower accuracy expected) vs. EfficientNet (deeper, better for patterns, start with B0 variant).
 
 ## FUTURE CONSIDERATIONS BEFORE PRACTICAL USE
 - **Generalisation**: Train on diverse breeds (e.g., solid black/white cats via Oxford-IIIT dataset); use nose prints or facial geometry for low-pattern cases.
